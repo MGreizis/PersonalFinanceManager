@@ -8,8 +8,6 @@ namespace PersonalFinanceManager {
     public required string Username { get; set; }
     public required string Password { get; set; }
 
-    // private static string userDataFile = "src/userdata.json";
-
     private static string GetUserDataFilePath() {
       string projectRoot = AppDomain.CurrentDomain.BaseDirectory!;
       string relativePath = Path.Combine(projectRoot, @"..\..\..\src\userdata.json");
