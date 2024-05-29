@@ -3,25 +3,30 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text.Json;
 
-namespace PersonalFinanceManager {
-  public class User {
+namespace PersonalFinanceManager
+{
+  public class User
+  {
     public required string Username { get; set; }
     public required string Password { get; set; }
 
-    private static string GetUserDataFilePath() {
+    private static string GetUserDataFilePath()
+    {
       string projectRoot = AppDomain.CurrentDomain.BaseDirectory!;
       string relativePath = Path.Combine(projectRoot, @"..\..\..\src\userdata.json");
       return Path.GetFullPath(relativePath);
     }
 
-    public static void SignUp() {
+    public static void SignUp()
+    {
       Console.WriteLine("Enter a username: ");
       string username = Console.ReadLine()!;
 
       Console.WriteLine("Enter a password: ");
       string password = Console.ReadLine()!;
 
-      User newUser = new User {
+      User newUser = new User
+      {
         Username = username,
         Password = password
       };
@@ -30,7 +35,8 @@ namespace PersonalFinanceManager {
       Console.WriteLine("User created successfully!");
     }
 
-    private static void SaveUser(User user) {
+    private static void SaveUser(User user)
+    {
       List<User> users = LoadUsers();
       users.Add(user);
 
@@ -39,21 +45,25 @@ namespace PersonalFinanceManager {
       File.WriteAllText(filePath, jsonString);
     }
 
-    private static List<User> LoadUsers() {
+    private static List<User> LoadUsers()
+    {
       string filePath = GetUserDataFilePath();
 
-      if (!File.Exists(filePath)) {
+      if (!File.Exists(filePath))
+      {
         return new List<User>();
       }
 
       string jsonString = File.ReadAllText(filePath);
-      if (string.IsNullOrWhiteSpace(jsonString)) {
+      if (string.IsNullOrWhiteSpace(jsonString))
+      {
         return new List<User>();
       }
       return JsonSerializer.Deserialize<List<User>>(jsonString) ?? new List<User>();
     }
 
-    public static bool Login() {
+    public static bool Login()
+    {
       Console.WriteLine("Enter your username: ");
       string username = Console.ReadLine()!;
 
@@ -61,8 +71,10 @@ namespace PersonalFinanceManager {
       string password = Console.ReadLine()!;
 
       List<User> users = LoadUsers();
-      foreach (User user in users) {
-        if (user.Username == username && user.Password == password) {
+      foreach (User user in users)
+      {
+        if (user.Username == username && user.Password == password)
+        {
           Console.WriteLine("Login successful!");
           return true;
         }
