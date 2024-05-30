@@ -81,11 +81,23 @@ namespace PersonalFinanceManager
         return;
       }
 
-      Console.WriteLine("Transaction found. Enter new amount: ");
-      incomeToUpdate.Amount = decimal.Parse(Console.ReadLine()!);
+      Console.WriteLine($"Current Amount: {incomeToUpdate.Amount}");
+      Console.Write("Enter new Amount (or press Enter to keep current): ");
+      string newAmount = Console.ReadLine()!;
 
-      Console.WriteLine("Enter new source: ");
-      incomeToUpdate.Source = Console.ReadLine()!;
+      if (!string.IsNullOrEmpty(newAmount))
+      {
+        incomeToUpdate.Amount = decimal.Parse(newAmount);
+      }
+
+      Console.WriteLine($"Current Source: {incomeToUpdate.Source}");
+      Console.Write("Enter new Source (or press Enter to keep current): ");
+      string newSource = Console.ReadLine()!;
+
+      if (!string.IsNullOrEmpty(newSource))
+      {
+        incomeToUpdate.Source = newSource;
+      }
 
       incomeToUpdate.Date = DateTime.Now.ToString("dd-MM-yyyy");
       
