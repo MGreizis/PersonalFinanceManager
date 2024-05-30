@@ -5,7 +5,7 @@ namespace PersonalFinanceManager
 {
   public class Income
   {
-    public required string Id { get; set; }
+    public required string Id { get; set; } // refactor to int pls 
     public required decimal Amount { get; set; }
     public required string Source { get; set; }
     public required string Date { get; set; }
