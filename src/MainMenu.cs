@@ -4,8 +4,8 @@ namespace PersonalFinanceManager {
   class MainMenu {
     public static void DrawMainMenu() {
       Console.WriteLine("Choose an action: ");
-      Console.WriteLine("1. Add income" + "\n2. Add expense" + "\n3. View balance" + "\n4. View savings" + "\n5. Report generator");
-      string input = Console.ReadLine();
+      Console.WriteLine("1. Income" + "\n2. Expense" + "\n3. Balance" + "\n4. Savings" + "\n5. Report generator");
+      string input = Console.ReadLine()!;
 
       switch (input) {
         case "1":
