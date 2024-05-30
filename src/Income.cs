@@ -12,8 +12,17 @@ namespace PersonalFinanceManager
 
     private static string GetIncomeDataFilePath() {
       string projectRoot = AppDomain.CurrentDomain.BaseDirectory!;
-      string relativePath = Path.Combine(projectRoot, @"..\..\..\src\incomeData.json");
+      string relativePath = Path.Combine(projectRoot, @"..\..\..\src\incomeData.json"); // todo: load appropriate file based on who logged in
       return Path.GetFullPath(relativePath);
+    }
+
+    public static int GetNextId(List<Income> incomes)
+    {
+      if (incomes.Count == 0)
+      {
+        return 1;
+      }
+      return incomes.Max(income => int.Parse(income.Id)) + 1;
     }
 
     public static void ViewIncomeMenu() {
@@ -42,7 +51,8 @@ namespace PersonalFinanceManager
 
     public static void AddIncome()
     {
-      string id = Guid.NewGuid().ToString();
+      List<Income> incomes = LoadIncomes();
+      int id = GetNextId(incomes);
       string date = DateTime.Now.ToString("dd-MM-yyyy");
 
       Console.Write("Enter Amount: ");
@@ -53,13 +63,12 @@ namespace PersonalFinanceManager
 
       Income newIncome = new Income 
       {
-        Id = id,
+        Id = id.ToString(),
         Amount = amount,
         Source = source,
         Date = date
       };
 
-      List<Income> incomes = LoadIncomes();
       incomes.Add(newIncome);
 
       SaveIncomes(incomes);

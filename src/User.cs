@@ -13,7 +13,7 @@ namespace PersonalFinanceManager
     private static string GetUserDataFilePath()
     {
       string projectRoot = AppDomain.CurrentDomain.BaseDirectory!;
-      string relativePath = Path.Combine(projectRoot, @"..\..\..\src\userdata.json");
+      string relativePath = Path.Combine(projectRoot, @"..\..\..\src\userdata.json"); // todo: different file based on who signs up
       return Path.GetFullPath(relativePath);
     }
 
