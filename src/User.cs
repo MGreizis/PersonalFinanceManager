@@ -33,6 +33,8 @@ namespace PersonalFinanceManager
 
       SaveUser(newUser);
       Console.WriteLine("User created successfully!");
+
+      MainMenu.DrawMainMenu();
     }
 
     private static void SaveUser(User user)
@@ -76,6 +78,7 @@ namespace PersonalFinanceManager
         if (user.Username == username && user.Password == password)
         {
           Console.WriteLine("Login successful!");
+          MainMenu.DrawMainMenu();
           return true;
         }
       }
